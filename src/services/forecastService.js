@@ -18,6 +18,8 @@ export const forecastPeriods = [
   { label: "3 months", value: 3 },
   { label: "6 months", value: 6 },
   { label: "1 year", value: 12 },
+  { label: "5 years", value: 60 },
+  { label: "10 years", value: 120 },
 ];
 
 const monthNames = [
@@ -30,35 +32,43 @@ function getMonthLabel(offset) {
   date.setDate(1);
   date.setMonth(date.getMonth() + offset);
 
-  return `${monthNames[date.getMonth()]} ${String(date.getFullYear()).slice(-2)}`;
+  return `${monthNames[date.getMonth()]} ${String(
+    date.getFullYear()
+  ).slice(-2)}`;
 }
 
 function roundToNearest50(value) {
   return Math.round(value / 50) * 50;
 }
 
-// DEMO ONLY: illustrative assumptions, not verified market data
-// and not predictions from a trained machine-learning model.
 export async function getForecastData(locality, forecastMonths = 6) {
   const selectedLocality = localityData[locality];
   const months = Number(forecastMonths);
+
+  const supportedPeriods = forecastPeriods.map((item) => item.value);
 
   if (!selectedLocality) {
     throw new Error("Please select a valid Pune locality.");
   }
 
-  if (![3, 6, 12].includes(months)) {
+  if (!supportedPeriods.includes(months)) {
     throw new Error("Please select a supported forecast period.");
   }
 
   const { currentRate, annualGrowth } = selectedLocality;
-  const monthlyGrowth =
-    Math.pow(1 + annualGrowth / 100, 1 / 12) - 1;
+
+  // Illustrative compound-growth calculation.
+  // Replace this with the trained forecasting model's API later.
+  const monthlyGrowth = Math.pow(
+    1 + annualGrowth / 100,
+    1 / 12
+  ) - 1;
 
   const history = [];
 
   for (let offset = -5; offset <= 0; offset += 1) {
-    const rate = currentRate * Math.pow(1 + monthlyGrowth, offset);
+    const rate =
+      currentRate * Math.pow(1 + monthlyGrowth, offset);
 
     history.push({
       month: getMonthLabel(offset),
@@ -70,7 +80,8 @@ export async function getForecastData(locality, forecastMonths = 6) {
   const forecast = [];
 
   for (let month = 1; month <= months; month += 1) {
-    const rate = currentRate * Math.pow(1 + monthlyGrowth, month);
+    const rate =
+      currentRate * Math.pow(1 + monthlyGrowth, month);
 
     forecast.push({
       month: getMonthLabel(month),
