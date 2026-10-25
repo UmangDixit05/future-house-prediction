@@ -1,0 +1,433 @@
+
+/* =========================================
+   ESTATEIQ NAVBAR
+   File: src/components/Navbar.css
+========================================= */
+
+/* 1. Header */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  border-bottom: 1px solid rgba(231, 234, 241, 0.9);
+  background: rgba(255, 255, 255, 0.96);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+.navbar-container {
+  display: flex;
+  width: min(1440px, calc(100% - 64px));
+  min-height: 82px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  margin-inline: auto;
+}
+
+/* 2. Brand */
+
+.navbar-brand {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 11px;
+  color: var(--color-heading);
+}
+
+.brand-icon {
+  display: flex;
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(49, 94, 251, 0.12);
+  border-radius: 13px;
+  background: linear-gradient(145deg, #edf1ff, #f5f7ff);
+  color: var(--color-primary);
+  transition:
+    background var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.navbar-brand:hover .brand-icon {
+  background: #e3eaff;
+  transform: translateY(-1px);
+}
+
+.brand-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.brand-name {
+  color: var(--color-heading);
+  font-size: 1.42rem;
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  line-height: 1.2;
+}
+
+.brand-name > span {
+  color: var(--color-primary);
+}
+
+.brand-tagline {
+  color: var(--color-muted);
+  font-size: 0.57rem;
+  font-weight: 750;
+  letter-spacing: 0.105em;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+/* 3. Desktop navigation */
+
+.desktop-navigation {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.navbar-link {
+  position: relative;
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 13px;
+  border-radius: 9px;
+  color: #647087;
+  font-size: 0.84rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    color var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.navbar-link:hover {
+  background: #f5f7fc;
+  color: var(--color-heading);
+}
+
+.navbar-link.active {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.navbar-link.active::after {
+  position: absolute;
+  right: 14px;
+  bottom: -21px;
+  left: 14px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--color-primary);
+  content: "";
+}
+
+/* 4. Right-side actions */
+
+.navbar-actions {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 12px;
+}
+
+.navbar-cta {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 17px;
+  border: 1px solid var(--color-primary);
+  border-radius: 9px;
+  background: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(49, 94, 251, 0.15);
+  color: #ffffff;
+  font-size: 0.84rem;
+  font-weight: 650;
+  white-space: nowrap;
+  transition:
+    background var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.navbar-cta:hover {
+  transform: translateY(-1px);
+  background: var(--color-primary-hover);
+  box-shadow: 0 6px 16px rgba(49, 94, 251, 0.23);
+}
+
+.navbar-cta svg {
+  transition: transform var(--transition-fast);
+}
+
+.navbar-cta:hover svg {
+  transform: translate(2px, -2px);
+}
+
+/* 5. Mobile menu button */
+
+.mobile-menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: #ffffff;
+  color: var(--color-heading);
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.mobile-menu-toggle:hover {
+  border-color: #cdd7eb;
+  background: #f5f7fc;
+}
+
+.mobile-menu-toggle:focus-visible {
+  outline: 3px solid rgba(49, 94, 251, 0.3);
+  outline-offset: 3px;
+}
+
+/* 6. Mobile navigation panel */
+
+.mobile-navigation {
+  display: none;
+}
+
+/* 7. Mobile navigation links */
+
+.mobile-nav-link {
+  display: flex;
+  min-height: 50px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: #5c687e;
+  font-size: 0.91rem;
+  font-weight: 600;
+  transition:
+    color var(--transition-fast),
+    background var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.mobile-nav-link:hover {
+  background: #f6f8fd;
+  color: var(--color-heading);
+}
+
+.mobile-nav-link.active {
+  border-color: #e0e7ff;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.mobile-nav-link-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mobile-nav-arrow {
+  color: #9aa4b6;
+  transition:
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.mobile-nav-link:hover .mobile-nav-arrow {
+  transform: translate(2px, -2px);
+  color: var(--color-primary);
+}
+
+/* 8. Mobile panel footer */
+
+.mobile-navigation-footer {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 10px;
+  padding: 15px 12px 4px;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-muted);
+  font-size: 0.78rem;
+}
+
+.mobile-status-dot {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--color-success);
+  box-shadow: 0 0 0 3px var(--color-success-light);
+}
+
+/* 9. Tablet and smaller laptop layouts */
+
+@media (max-width: 1150px) {
+  .navbar-container {
+    width: calc(100% - 40px);
+    gap: 18px;
+  }
+
+  .desktop-navigation {
+    gap: 2px;
+  }
+
+  .navbar-link {
+    gap: 6px;
+    padding-inline: 9px;
+    font-size: 0.79rem;
+  }
+
+  .navbar-cta {
+    padding-inline: 12px;
+    font-size: 0.8rem;
+  }
+
+  .brand-tagline {
+    font-size: 0.52rem;
+  }
+}
+
+/* 10. Mobile layout */
+
+@media (max-width: 900px) {
+  .navbar-container {
+    min-height: 74px;
+    gap: 12px;
+  }
+
+  .desktop-navigation {
+    display: none;
+  }
+
+  .navbar-actions {
+    margin-left: auto;
+  }
+
+  .mobile-menu-toggle {
+    display: inline-flex;
+  }
+
+  .mobile-navigation {
+    display: grid;
+    grid-template-rows: 0fr;
+    border-top: 0 solid transparent;
+    background: #ffffff;
+    visibility: hidden;
+    opacity: 0;
+    transition:
+      grid-template-rows 220ms ease,
+      opacity 180ms ease,
+      visibility 180ms ease,
+      border-color 180ms ease;
+  }
+
+  .mobile-navigation > nav {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .mobile-navigation.is-open {
+    grid-template-rows: 1fr;
+    border-top-width: 1px;
+    border-top-color: var(--color-border);
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .mobile-navigation.is-open > nav {
+    padding: 12px 20px 18px;
+  }
+
+  .navbar-link.active::after {
+    display: none;
+  }
+}
+
+/* 11. Small phones */
+
+@media (max-width: 480px) {
+  .navbar-container {
+    width: calc(100% - 28px);
+    min-height: 68px;
+  }
+
+  .brand-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+  }
+
+  .brand-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .brand-name {
+    font-size: 1.25rem;
+  }
+
+  .brand-tagline {
+    font-size: 0.48rem;
+    letter-spacing: 0.075em;
+  }
+
+  .navbar-actions {
+    gap: 8px;
+  }
+
+  .navbar-cta {
+    min-height: 40px;
+    gap: 5px;
+    padding-inline: 10px;
+    font-size: 0.76rem;
+  }
+
+  .navbar-cta svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .mobile-menu-toggle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .mobile-navigation.is-open > nav {
+    padding-inline: 14px;
+  }
+}
+
+/* 12. Reduced motion accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header *,
+  .site-header *::before,
+  .site-header *::after {
+    scroll-behavior: auto;
+    transition-duration: 0.01ms;
+  }
+}
