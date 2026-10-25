@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx';
 import Home from './pages/Home.jsx';
 import ComingSoon from './pages/ComingSoon.jsx';
+import Prediction from "./pages/Prediction";
 
 import './App.css';
 
@@ -16,17 +17,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
 
-          <Route
-            path="/predict"
-            element={
-              <ComingSoon
-                title="House Price Prediction"
-                description="Estimate a property's value using its location, size, and key features."
-                number="01"
-              />
-            }
-          />
-
+          <Route path="/predict" element={<Prediction />} />
+          
           <Route
             path="/forecast"
             element={
@@ -59,6 +51,8 @@ function App() {
               />
             }
           />
+
+          
         </Routes>
       </main>
     </div>
