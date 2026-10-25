@@ -1,62 +1,32 @@
 
-import { Route, Routes } from 'react-router-dom';
-
-import Navbar from './components/Navbar.jsx';
-import Home from './pages/Home.jsx';
-import ComingSoon from './pages/ComingSoon.jsx';
+import { Navigate, Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
 import Prediction from "./pages/Prediction";
+import Forecast from "./pages/Forecast";
+import ComingSoon from "./pages/ComingSoon";
+import "./App.css";
 
-import './App.css';
-
-function App() {
+export default function App() {
   return (
     <div className="app">
       <Navbar />
 
-      <main className="app-main">
-        <Routes>
-          <Route path="/" element={<Home />} />
-
-          <Route path="/predict" element={<Prediction />} />
-          
-          <Route
-            path="/forecast"
-            element={
-              <ComingSoon
-                title="Future Price Forecasting"
-                description="Explore historical market trends and future property price estimates."
-                number="02"
-              />
-            }
-          />
-
-          <Route
-            path="/insights"
-            element={
-              <ComingSoon
-                title="Real Estate Market Insights"
-                description="Explore locality news, public sentiment, and property market intelligence."
-                number="03"
-              />
-            }
-          />
-
-          <Route
-            path="*"
-            element={
-              <ComingSoon
-                title="Page Not Found"
-                description="The page you're looking for doesn't exist yet."
-                number="404"
-              />
-            }
-          />
-
-          
-        </Routes>
-      </main>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/predict" element={<Prediction />} />
+        <Route path="/forecast" element={<Forecast />} />
+        <Route
+          path="/insights"
+          element={
+            <ComingSoon
+              title="Market Insights"
+              description="Explore Pune real estate news, locality sentiment, and market intelligence."
+            />
+          }
+        />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
     </div>
   );
 }
-
-export default App;
